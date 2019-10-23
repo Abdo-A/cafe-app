@@ -2,6 +2,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import React from 'react';
 
 import AddMenuItem from './pages/AddMenuItem';
+import Header from './components/header';
 import Menu from './pages/Menu';
 
 import './App.css';
@@ -9,6 +10,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route path="/" exact component={Menu} />
         <Route path="/add" component={AddMenuItem} />
