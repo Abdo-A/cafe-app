@@ -1,6 +1,17 @@
-.menu__container {
+.menu__upperRowContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 4vh 10vw 2vh 10vw;
+}
+
+.menu__upperRowContainer__identifier {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.menu__itemsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 5vh 0;
 }
