@@ -8,12 +8,12 @@ const Menu = () => (
   <div
     className="menu__container"
   >
-    <MenuItem />
-    <MenuItem />
-    <MenuItem />
-    <MenuItem />
-    <MenuItem />
-    <MenuItem />
+    <MenuItem item={{}} />
+    <MenuItem item={{}} />
+    <MenuItem item={{}} />
+    <MenuItem item={{}} />
+    <MenuItem item={{}} />
+    <MenuItem item={{}} />
   </div>
 );
 

@@ -13,4 +13,32 @@
   height: 30%;
   width: 100%;
   background-color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.menuItem__infoInnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: bold;
+}
+
+.menuItem__type {
+  margin: 5px;
+  text-transform: uppercase;
+  color: #909090;
+  font-size: 12px;
+}
+
+.menuItem__name {
+  margin: 5px;
+  color: #343434;
+  font-size: 18px;
+}
+
+.menuItem__price {
+  color: #909090;
 }
