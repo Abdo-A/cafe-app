@@ -8,10 +8,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Switch>
-        <Route path='/' exact component={Menu} />
-        <Route path='/add' component={AddMenuItem} />
+        <Route path="/" exact component={Menu} />
+        <Route path="/add" component={AddMenuItem} />
         <Redirect to={Menu} />
       </Switch>
     </div>
