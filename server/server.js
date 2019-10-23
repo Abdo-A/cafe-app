@@ -19,6 +19,7 @@ app.use(cors());
 
 // Routes
 app.use('/api/info', (req, res) => res.send('Cafe App API'));
+app.use('/api/menuitem', require('./routes/menuitem'));
 
 const port = process.env.PORT || 4200;
 
