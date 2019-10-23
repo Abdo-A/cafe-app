@@ -11,6 +11,9 @@ require('./models/loadModels');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// DB Connect
+require('./config/dbconnect');
+
 // Cors Middleware
 app.use(cors());
 
