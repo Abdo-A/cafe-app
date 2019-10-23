@@ -1,0 +1,25 @@
+.addMenuItem__container {
+  margin: 5vh 10vw;
+}
+
+.addMenuItem__title {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.addMenuItem__inputContainer {
+  display: flex;
+  align-items: baseline;
+  width: 35vw;
+  min-width: 250px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.addMenuItem__inputLabel {
+  flex: 0.2;
+}
+
+.addMenuItem__inputBody {
+  flex: 0.8;
+}
