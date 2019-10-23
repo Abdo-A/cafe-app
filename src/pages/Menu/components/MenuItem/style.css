@@ -1,0 +1,16 @@
+.menuItem__container {
+  width: 350px;
+  height: 300px;
+  margin: 20px;
+}
+
+.menuItem__img {
+  height: 70%;
+  width: 100%;
+}
+
+.menuItem__infoContainer {
+  height: 30%;
+  width: 100%;
+  background-color: #FFF;
+}

@@ -1,0 +1,6 @@
+.menu__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5vh 0;
+}
