@@ -8,7 +8,9 @@ import MenuItem from './components/MenuItem';
 
 import './style.css';
 
-const Menu = ({ history, allMenuItems, getAllMenuItems }) => {
+const Menu = ({
+ history, allMenuItems, getAllMenuItems, deleteMenuItem,
+}) => {
   useEffect(() => {
     getAllMenuItems();
   }, [getAllMenuItems]);
@@ -16,6 +18,14 @@ const Menu = ({ history, allMenuItems, getAllMenuItems }) => {
   const onRedirectToAddItem = () => {
     history.push('/add');
   };
+
+  const onDeleteItem = (id) => {
+    const callback = () => {
+      getAllMenuItems();
+    };
+    deleteMenuItem(id, callback);
+  };
+
   return (
     <div>
       <div>
@@ -26,7 +36,7 @@ const Menu = ({ history, allMenuItems, getAllMenuItems }) => {
         <div className="menu__itemsContainer">
           {
             allMenuItems.map(({ _id: id, ...item }) => (
-              <MenuItem key={id} item={item} />
+              <MenuItem key={id} item={item} const onDelete={() => onDeleteItem(id)} />
             ))
           }
         </div>
@@ -40,11 +50,13 @@ Menu.propTypes = {
   allMenuItems: PropTypes.arrayOf(PropTypes.shape({})),
 
   getAllMenuItems: PropTypes.func,
+  deleteMenuItem: PropTypes.func,
 };
 
 Menu.defaultProps = {
   allMenuItems: [],
   getAllMenuItems: () => null,
+  deleteMenuItem: () => null,
 };
 
 
@@ -55,6 +67,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getAllMenuItems: menuItemActions.getAllMenuItems,
+  deleteMenuItem: menuItemActions.deleteMenuItem,
 };
 
 export default connect(

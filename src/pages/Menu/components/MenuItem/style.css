@@ -4,9 +4,22 @@
   margin: 20px;
 }
 
-.menuItem__img {
+.menuItem__imgContainer {
   height: 70%;
   width: 100%;
+  position: relative;
+}
+
+.menuItem__img {
+  height: 100%;
+  width: 100%;
+}
+
+.menuItem__removeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .menuItem__infoContainer {
