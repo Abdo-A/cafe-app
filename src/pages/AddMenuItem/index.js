@@ -1,17 +1,28 @@
 import {
  Button, Input, InputNumber, Select,
 } from 'antd';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+
+import * as menuItemActions from '../../store/actions/menuItemActions';
 
 import './style.css';
 
 const { Option } = Select;
 
-const AddMenuItem = () => {
+const AddMenuItem = ({ createMenuItem, history }) => {
   const [item, setItem] = useState({ type: '', name: '', price: '' });
 
   const updateItem = (key, value) => {
     setItem({ ...item, [key]: value });
+  };
+
+  const handleSaveItem = () => {
+    const callback = () => {
+      history.push('/');
+    };
+    createMenuItem(item, callback);
   };
 
   // Check that all inputs are filled by user
@@ -52,9 +63,27 @@ const AddMenuItem = () => {
         />
       </div>
 
-      <Button disabled={!isSaveButtonEnabled} type="primary" dis>Save Item</Button>
+      <Button onClick={handleSaveItem} disabled={!isSaveButtonEnabled} type="primary" dis>Save Item</Button>
     </div>
   );
 };
 
-export default AddMenuItem;
+
+AddMenuItem.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+
+  createMenuItem: PropTypes.func,
+};
+
+AddMenuItem.defaultProps = {
+  createMenuItem: () => null,
+};
+
+const mapDispatchToProps = {
+  createMenuItem: menuItemActions.createMenuItem,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AddMenuItem);

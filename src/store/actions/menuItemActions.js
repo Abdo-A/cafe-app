@@ -12,7 +12,7 @@ export const createMenuItem = (menuItem, callback) => (dispatch) => {
     })
     .catch(() => {
       dispatch({
-        type: actionTypes.SET_ERRORS,
+        type: actionTypes.SET_ERROR,
         payload: 'Error while creating menu item',
       });
     })
@@ -22,5 +22,3 @@ export const createMenuItem = (menuItem, callback) => (dispatch) => {
       });
     });
 };
-
-export const d = 3;
