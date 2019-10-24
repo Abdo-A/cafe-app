@@ -48,3 +48,25 @@ export const getAllMenuItems = (callback) => (dispatch) => {
       });
     });
 };
+
+export const deleteMenuItem = (id, callback) => (dispatch) => {
+  dispatch({
+    type: actionTypes.START_LOADING,
+  });
+  http
+    .delete(`${menuItemAPI}/${id}`)
+    .then(() => {
+      if (callback) callback();
+    })
+    .catch(() => {
+      dispatch({
+        type: actionTypes.SET_ERROR,
+        payload: 'Error while deleting menu item',
+      });
+    })
+    .finally(() => {
+      dispatch({
+        type: actionTypes.END_LOADING,
+      });
+    });
+};
