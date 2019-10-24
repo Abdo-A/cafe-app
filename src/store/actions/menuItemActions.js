@@ -36,7 +36,7 @@ export const getAllMenuItems = (callback) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch({
         type: actionTypes.SET_ERROR,
         payload: 'Error while getting menu items',

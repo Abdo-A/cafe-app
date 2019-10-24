@@ -11,7 +11,7 @@ import './style.css';
 
 const { Option } = Select;
 
-const AddMenuItem = ({ createMenuItem, history }) => {
+const AddMenuItem = ({ history, createMenuItem }) => {
   const [item, setItem] = useState({ type: '', name: '', price: '' });
 
   const updateItem = (key, value) => {

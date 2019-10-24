@@ -1,12 +1,18 @@
 import { Button } from 'antd';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import * as menuItemActions from '../../store/actions/menuItemActions';
 import MenuItem from './components/MenuItem';
 
 import './style.css';
 
-const Menu = ({ history }) => {
+const Menu = ({ history, allMenuItems, getAllMenuItems }) => {
+  useEffect(() => {
+    getAllMenuItems();
+  }, [getAllMenuItems]);
+
   const onRedirectToAddItem = () => {
     history.push('/add');
   };
@@ -18,12 +24,11 @@ const Menu = ({ history }) => {
           <Button onClick={onRedirectToAddItem} type="primary">Add menu item</Button>
         </div>
         <div className="menu__itemsContainer">
-          <MenuItem item={{}} />
-          <MenuItem item={{}} />
-          <MenuItem item={{}} />
-          <MenuItem item={{}} />
-          <MenuItem item={{}} />
-          <MenuItem item={{}} />
+          {
+            allMenuItems.map(({ _id: id, ...item }) => (
+              <MenuItem key={id} item={item} />
+            ))
+          }
         </div>
       </div>
     </div>
@@ -32,7 +37,27 @@ const Menu = ({ history }) => {
 
 Menu.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+  allMenuItems: PropTypes.arrayOf(PropTypes.shape({})),
+
+  getAllMenuItems: PropTypes.func,
+};
+
+Menu.defaultProps = {
+  allMenuItems: [],
+  getAllMenuItems: () => null,
 };
 
 
-export default Menu;
+const mapStateToProps = (state) => ({
+  allMenuItems: state.menuItem.allMenuItems,
+});
+
+
+const mapDispatchToProps = {
+  getAllMenuItems: menuItemActions.getAllMenuItems,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Menu);
