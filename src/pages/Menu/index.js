@@ -39,6 +39,9 @@ const Menu = ({
               <MenuItem key={id} item={item} const onDelete={() => onDeleteItem(id)} />
             ))
           }
+          {
+            allMenuItems.length === 0 && <p className="menu__noItemsHint">You haven&apos;t added any Menu Items yet</p>
+          }
         </div>
       </div>
     </div>

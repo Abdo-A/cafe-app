@@ -15,3 +15,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.menu__noItemsHint {
+  margin: 10vh 10vw;
+  font-size: 18px;
+  font-weight: bold;
+}
