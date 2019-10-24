@@ -1,9 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const INITIAL_STATE = {
+  allMenuItems: [],
   isLoading: false,
   error: '',
-  allMenuItems: [],
+  info: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
