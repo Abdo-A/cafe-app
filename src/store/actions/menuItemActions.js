@@ -22,3 +22,29 @@ export const createMenuItem = (menuItem, callback) => (dispatch) => {
       });
     });
 };
+
+export const getAllMenuItems = (callback) => (dispatch) => {
+  dispatch({
+    type: actionTypes.START_LOADING,
+  });
+  http
+    .get(`${menuItemAPI}/all`)
+    .then((res) => {
+      if (callback) callback();
+      dispatch({
+        type: actionTypes.SET_MENU_ITEMS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: actionTypes.SET_ERROR,
+        payload: 'Error while getting menu items',
+      });
+    })
+    .finally(() => {
+      dispatch({
+        type: actionTypes.END_LOADING,
+      });
+    });
+};
