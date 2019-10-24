@@ -33,6 +33,12 @@ export default (state = INITIAL_STATE, action) => {
         error: action.payload,
       };
 
+    case actionTypes.SET_INFO:
+      return {
+        ...state,
+        info: action.payload,
+      };
+
     default:
       return state;
   }
