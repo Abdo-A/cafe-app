@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import * as menuItemActions from '../../store/actions/menuItemActions';
+import LoadingIndicator from '../LoadingIndicator';
 
 import './style.css';
 
 const Header = ({
- error, info, setError, setInfo,
+  isLoading, error, info, setError, setInfo,
 }) => {
   useEffect(() => {
     // Handle showing info
@@ -34,26 +35,37 @@ const Header = ({
   return (
     <Card hoverable onClick={onClick}>
       <p className="header__title">Cafe React</p>
+      {
+        isLoading && <LoadingIndicator />
+      }
     </Card>
     );
 };
 
 Header.propTypes = {
+  isLoading: PropTypes.bool,
+
   error: PropTypes.string,
   info: PropTypes.string,
+
   setError: PropTypes.func,
   setInfo: PropTypes.func,
 };
 
 Header.defaultProps = {
+  isLoading: false,
+
   error: '',
   info: '',
+
   setError: () => null,
   setInfo: () => null,
 };
 
 
 const mapStateToProps = (state) => ({
+  isLoading: state.menuItem.isLoading,
+
   error: state.menuItem.error,
   info: state.menuItem.info,
 });
