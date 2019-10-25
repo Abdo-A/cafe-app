@@ -18,8 +18,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "install-server": "npm i --prefix server",
+    "install-all": "npm i && npm run install-server",
+    "start-server": "npm run server --prefix server",
+    "start-all": "concurrently \"npm start\" \"npm run start-server\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1"
   }
