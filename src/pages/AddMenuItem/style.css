@@ -27,3 +27,13 @@
 .addMenuItem__inputBody {
   flex: 0.8;
 }
+
+.addMenuItem__img {
+  width: 350px;
+  height: 210px;
+  margin-top: 50px;
+}
+
+.addMenuItem__saveButton {
+  margin-top: 50px;
+}

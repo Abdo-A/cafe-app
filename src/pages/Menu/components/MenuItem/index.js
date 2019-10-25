@@ -5,11 +5,13 @@ import './style.css';
 import ImagePlaceholder from '../../../../assets/images/image-placeholder.jpg';
 
 const MenuItem = ({
-  item: { name = 'Meal name', type = 'Meal type', price = 10 }, onDelete,
+  item: {
+ name, type, price, photoUrl = ImagePlaceholder,
+}, onDelete,
 }) => (
   <div className="menuItem__container">
     <div className="menuItem__imgContainer">
-      <img src={ImagePlaceholder} className="menuItem__img" alt="menu item" />
+      <img src={photoUrl} className="menuItem__img" alt="menu item" />
       <span onClick={onDelete} className="menuItem__removeIcon" role="img" aria-label="remove">❌</span>
     </div>
     <div className="menuItem__infoContainer">

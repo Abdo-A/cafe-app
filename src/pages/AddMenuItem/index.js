@@ -4,15 +4,22 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import ReactFilestack from 'filestack-react';
 
 import * as menuItemActions from '../../store/actions/menuItemActions';
 
 import './style.css';
+import keys from '../../keys.ignore';
 
 const { Option } = Select;
 
-const AddMenuItem = ({ history, createMenuItem }) => {
-  const [item, setItem] = useState({ type: '', name: '', price: '' });
+const AddMenuItem = ({ history, createMenuItem, setError }) => {
+  const [item, setItem] = useState({
+    type: '',
+    name: '',
+    price: '',
+    photoUrl: '',
+  });
 
   const updateItem = (key, value) => {
     setItem({ ...item, [key]: value });
@@ -23,6 +30,14 @@ const AddMenuItem = ({ history, createMenuItem }) => {
       history.push('/');
     };
     createMenuItem(item, callback);
+  };
+
+  const handleImageUploadSuccess = (result) => {
+    updateItem('photoUrl', result.filesUploaded[0].url);
+  };
+
+  const handleImageUploadError = () => {
+    setError('Error while uploading photo, please try again.');
   };
 
   // Check that all inputs are filled by user
@@ -63,24 +78,54 @@ const AddMenuItem = ({ history, createMenuItem }) => {
         />
       </div>
 
-      <Button onClick={handleSaveItem} disabled={!isSaveButtonEnabled} type="primary" dis>Save Item</Button>
+      <div>
+        <ReactFilestack
+          apikey={keys.filestackKey}
+          buttonClass="ui medium button gray"
+          onSuccess={handleImageUploadSuccess}
+          onError={handleImageUploadError}
+          componentDisplayMode={{
+            customText: 'Choose Menu Item Photo',
+          }}
+        />
+      </div>
+
+      {item.photoUrl && (
+        <div>
+          <img src={item.photoUrl} alt="item" className="addMenuItem__img" />
+        </div>
+      )}
+
+      <Button
+        onClick={handleSaveItem}
+        disabled={!isSaveButtonEnabled}
+        className="addMenuItem__saveButton"
+        type="primary"
+        dis
+      >
+        Save Item
+      </Button>
     </div>
   );
 };
-
 
 AddMenuItem.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 
   createMenuItem: PropTypes.func,
+
+  setError: PropTypes.func,
 };
 
 AddMenuItem.defaultProps = {
   createMenuItem: () => null,
+
+  setError: () => null,
 };
 
 const mapDispatchToProps = {
   createMenuItem: menuItemActions.createMenuItem,
+  setError: menuItemActions.setError,
 };
 
 export default connect(

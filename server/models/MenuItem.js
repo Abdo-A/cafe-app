@@ -12,7 +12,7 @@ const MenuItemSchema = new Schema({
   price: {
     type: Number,
   },
-  photo: {
+  photoUrl: {
     type: String,
   },
   date: {
